@@ -1,0 +1,13 @@
+[
+  {
+    "__Key__": "a9583f13-e7f5-4f2f-b6b6-b184c1380d94",
+    "Id": "a9583f13-e7f5-4f2f-b6b6-b184c1380d94",
+    "AuthenticationType": "LocalDocker",
+    "BasicAuthCredentialPassword": "",
+    "BasicAuthCredentialUsername": "",
+    "CertificateCredentialFilePath": "",
+    "CertificateCredentialPassword": "",
+    "EngineApiUrl": "",
+    "Name": ""
+  }
+]

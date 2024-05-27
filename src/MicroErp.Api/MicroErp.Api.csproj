@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<InvariantGlobalization>false</InvariantGlobalization>
+    <RootNamespace>MicroErp.Api</RootNamespace>
+    <UserSecretsId>9ad6b7c0-de70-48b9-8bea-5b182a4ec193</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileContext>..\..</DockerfileContext>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.33" />
+    <PackageReference Include="Hangfire.Core" Version="1.7.33" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.7.33" />
+    <PackageReference Include="MediatR.Contracts" Version="1.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
+    <PackageReference Include="NetDevPack.Identity" Version="6.1.7" />
+    <PackageReference Include="NetDevPack.Security.Jwt.AspNetCore" Version="6.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>    
+    <ProjectReference Include="..\MicroErp.Application\MicroErp.Application.csproj" />
+    <ProjectReference Include="..\MicroErp.Domain.Service.Abstract\MicroErp.Domain.Service.Abstract.csproj" />
+    <ProjectReference Include="..\MicroErp.Infra.Bootstrap\MicroErp.Infra.Bootstrap.csproj" />
+    <ProjectReference Include="..\MicroErp.Infra.CrossCuting\MicroErp.Infra.CrossCuting.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>MicroErp.Domain.Repository.Orm.Abstract</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<InvariantGlobalization>false</InvariantGlobalization>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MicroErp.Domain.Entity\MicroErp.Domain.Entity.csproj" />
+  </ItemGroup>
+
+</Project>

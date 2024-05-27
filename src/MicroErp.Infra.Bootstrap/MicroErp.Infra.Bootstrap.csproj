@@ -1,0 +1,48 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>MicroErp.Infra.Bootstrap</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<InvariantGlobalization>false</InvariantGlobalization>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="6.0.2" />
+    <PackageReference Include="AspNetCore.HealthChecks.Uris" Version="6.0.3" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.2.2" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.33" />
+    <PackageReference Include="Hangfire.Core" Version="1.7.33" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.7.33" />
+    <PackageReference Include="MediatR" Version="11.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="MicroElements.Swashbuckle.FluentValidation" Version="5.7.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageReference Include="NetDevPack.Identity" Version="6.1.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Serilog" Version="2.12.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="6.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>    
+    <ProjectReference Include="..\MicroErp.Application\MicroErp.Application.csproj" />
+    <ProjectReference Include="..\MicroErp.Domain.Repository.Orm.Abstract\MicroErp.Domain.Repository.Orm.Abstract.csproj" />
+    <ProjectReference Include="..\MicroErp.Domain.Service.Abstract\MicroErp.Domain.Service.Abstract.csproj" />
+    <ProjectReference Include="..\MicroErp.Domain.Service\MicroErp.Domain.Service.csproj" />
+    <ProjectReference Include="..\MicroErp.Infra.CrossCuting\MicroErp.Infra.CrossCuting.csproj" />
+    <ProjectReference Include="..\MicroErp.Infra.Data.Repository.Orm\MicroErp.Infra.Data.Repository.Orm.csproj" />
+  </ItemGroup>
+
+</Project>

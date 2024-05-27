@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>MicroErp.Domain.Service</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<InvariantGlobalization>false</InvariantGlobalization>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.15.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="NetDevPack" Version="6.0.1" />
+    <PackageReference Include="sib_api_v3_sdk" Version="3.3.0" />
+    <PackageReference Include="ViaCep" Version="3.2.19" />
+  </ItemGroup>
+
+  <ItemGroup>    
+    <ProjectReference Include="..\MicroErp.Domain.Repository.Orm.Abstract\MicroErp.Domain.Repository.Orm.Abstract.csproj" />
+    <ProjectReference Include="..\MicroErp.Domain.Service.Abstract\MicroErp.Domain.Service.Abstract.csproj" />
+    <ProjectReference Include="..\MicroErp.Domain.Utils\MicroErp.Domain.Utils.csproj" />
+  </ItemGroup>
+
+</Project>

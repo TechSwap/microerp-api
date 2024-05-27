@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>MicroErp.Domain.Service.Abstract</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<InvariantGlobalization>false</InvariantGlobalization>
+    <Nullable>enable</Nullable>
+  </PropertyGroup> 
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>   
+    <ProjectReference Include="..\MicroErp.Domain.Entity\MicroErp.Domain.Entity.csproj" />
+    <ProjectReference Include="..\MicroErp.Infra.CrossCuting\MicroErp.Infra.CrossCuting.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dtos\User\CodigoUsers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Interfaces\Users\IUserService.AddNewUsers.cs" />
+  </ItemGroup>
+
+</Project>
