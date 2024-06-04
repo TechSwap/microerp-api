@@ -36,21 +36,29 @@ public partial class ClienteService
                 Ativo= itm.Ativo   
             });
         }
+        
+        metaData.TotalRecords = await _repositoryCliente.Query.Where(c => c.Id != null).CountAsync();  
 
-        if (!string.IsNullOrEmpty(requestDto.Nome))
+        if (!string.IsNullOrEmpty(requestDto.IdCliente))
         {
-            items = items.Where(c => c.Nome == requestDto.Nome).ToList();
+            items = items.Where(c => c.IdCliente == requestDto.IdCliente).ToList();
+            metaData.TotalRecords = items.Count;
         }
         if (!string.IsNullOrEmpty(requestDto.Cnpj))
         {                                         
-            items = items.Where(c => c.CNPJ == requestDto.Cnpj).ToList();                              
+            items = items.Where(c => c.CNPJ.Contains(Formatting.FormatCNPJ(requestDto.Cnpj))).ToList();     
+            metaData.TotalRecords = items.Count;
         }      
         if (!string.IsNullOrEmpty(requestDto.Responsavel))
         {
-            items = items.Where(c => c.Email == requestDto.Responsavel).ToList();
+            items = items.Where(c => c.Contato1 == requestDto.Responsavel).ToList();
+            metaData.TotalRecords = items.Count;
         }
-        
-        metaData.TotalRecords = await _repositoryCliente.Query.Where(c => c.Id != null).CountAsync() ;   
+        if (!string.IsNullOrEmpty(requestDto.Email))
+        {
+            items = items.Where(c => c.Email == requestDto.Email).ToList();
+            metaData.TotalRecords = items.Count;
+        }
         
         logger.LogInformation("Metodo finalizado:{0}", nameof(ListClientesAsync));
 

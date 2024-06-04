@@ -43,6 +43,5 @@ public partial class ClienteService
         
         logger.LogInformation("Metodo finalizado:{0}", nameof(FindOneClienteAsync));
         return ResponseDto<FindOneResponseDto>.Sucess(data);
-        
     }
 }

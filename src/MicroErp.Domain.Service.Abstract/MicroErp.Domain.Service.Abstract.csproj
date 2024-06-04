@@ -19,6 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Dtos\Departamentos\ActiveDepartamento\" />
+    <Folder Include="Dtos\Departamentos\UpdateDepartamento\" />
     <Folder Include="Dtos\User\CodigoUsers\" />
   </ItemGroup>
 

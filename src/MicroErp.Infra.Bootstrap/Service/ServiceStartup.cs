@@ -12,8 +12,10 @@ using MicroErp.Domain.Service.Concretes.Users;
 using MicroErp.Infra.Data.Repository.Orm.UnitOfWork;
 using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
+using MicroErp.Domain.Service.Abstract.Interfaces.Departamento;
 using MicroErp.Domain.Service.Abstract.Interfaces.OrdemServico;
 using MicroErp.Domain.Service.Abstract.Interfaces.Produto;
+using MicroErp.Domain.Service.Concretes.Departamento;
 using MicroErp.Domain.Service.Concretes.OrdemServico;
 using MicroErp.Domain.Service.Concretes.Produtos;
 
@@ -39,7 +41,9 @@ public static class ServiceStartup
         services.AddScoped<IProdutoService, ProdutoService>();
         // OrdemServico
         services.AddScoped<IOrdemServicoService, OrdemServicoService>();
-
+        // Departamento
+        services.AddScoped<IDepartamentoService, DepartamentoService>();
+        
         return services;
     }
 }
