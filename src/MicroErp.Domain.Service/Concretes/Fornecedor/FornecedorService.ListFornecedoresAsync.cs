@@ -23,7 +23,7 @@ public partial class FornecedorService
         
         var metaData = _mapper.Map<MetaDataResponse>(result.MetaData);
 
-        var items = new System.Collections.Generic.List<ListFornecedoresResponseDto>();
+        var items = new List<ListFornecedoresResponseDto>();
 
         foreach (var itm in result.Items)
         {
@@ -67,6 +67,5 @@ public partial class FornecedorService
         {
             return ResponseDto<IEnumerable<ListFornecedoresResponseDto>>.Sucess(items.ToList(), metaData, HttpStatusCode.OK);
         }
-        
     }
 }

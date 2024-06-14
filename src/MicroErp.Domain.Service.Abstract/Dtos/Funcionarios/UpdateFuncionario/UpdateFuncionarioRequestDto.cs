@@ -1,9 +1,8 @@
-using MicroErp.Domain.Service.Abstract.Dtos.Bases.Requests;
+namespace MicroErp.Domain.Service.Abstract.Dtos.Funcionarios.UpdateFuncionario;
 
-namespace MicroErp.Domain.Service.Abstract.Dtos.Funcionarios.AddFuncionario;
-
-public class AddFuncionarioRequestDto: RequestDto
+public class UpdateFuncionarioRequestDto
 {
+    public string IdFuncionario { get; set; }
     public string Nome { get; set; }
     public string? DepartamentoId { get; set; }
     public string? CentroCusto { get; set; }

@@ -10,5 +10,6 @@ public class ListOrdensResponseDto
     public string NotaSaida { get; set; }
     public decimal ValorTotal { get; set; }
     public int Itens { get; set; }
+    public DateTime DataLancamento { get; set; }
     public DateTime DataPrevisaoEntrega { get; set; }
 }

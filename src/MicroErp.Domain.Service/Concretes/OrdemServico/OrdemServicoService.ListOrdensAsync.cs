@@ -49,10 +49,26 @@ public partial class OrdemServicoService
                     NotaSaida = itm.NotaSaida,
                     ValorTotal = (decimal)itm.ValorTotal,
                     Itens = itemsOrdem,
+                    DataLancamento = itm.DataCadastro,
                     DataPrevisaoEntrega = (DateTime)itm.DataPrevisaoEntrega
                 };
                 
                 ordens.Add(ordem);
+            }
+
+            if (!string.IsNullOrEmpty(request.IdCliente))
+            {
+                ordens = ordens.Where(o => o.IdCliente == request.IdCliente).ToList();
+            }
+
+            if (!string.IsNullOrEmpty(request.DataLancamento.ToString()))
+            {
+                ordens = ordens.Where(o => o.DataLancamento.Date == request.DataLancamento).ToList();
+            }
+            
+            if (!string.IsNullOrEmpty(request.Solicitante))
+            {
+                ordens = ordens.Where(o => o.Solicitante.Contains(request.Solicitante)).ToList();
             }
             
             metaData.TotalPages = (ordens.Count / request.MetaData.PageSize);
@@ -64,7 +80,7 @@ public partial class OrdemServicoService
             }
             else
             {
-                return ResponseDto<IEnumerable<ListOrdensResponseDto>>.Sucess(ordens, metaData, HttpStatusCode.NoContent);
+                return ResponseDto<IEnumerable<ListOrdensResponseDto>>.Fail("Nenhum Registro Encontrado", HttpStatusCode.NotFound);
             }
         }
         catch (Exception e)

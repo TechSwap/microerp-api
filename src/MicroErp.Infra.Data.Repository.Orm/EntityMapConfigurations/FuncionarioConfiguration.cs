@@ -14,15 +14,17 @@ public class FuncionarioConfiguration: IEntityTypeConfiguration<Funcionario>
         builder.Property(x => x.Id)
             .HasColumnName("IdFuncionario")
             .IsRequired();
+        
         builder.Property(x => x.Codigo)
-            .HasColumnName("Codigo");
+            .HasColumnName("Codigo")
+            .IsRequired();
         
         builder.Property(x => x.Nome)
             .HasColumnName("Nome")
             .IsRequired();
         
-        builder.Property(x => x.Setor)
-            .HasColumnName("Setor");
+        builder.Property(x => x.DepartamentoId)
+            .HasColumnName("DepartamentoId");
 
         builder.Property(x => x.CentroCusto)
             .HasColumnName("CentroCusto");
@@ -34,9 +36,16 @@ public class FuncionarioConfiguration: IEntityTypeConfiguration<Funcionario>
             .HasColumnName("ValorHora")
             .IsRequired();
         
+        builder.Property(x => x.Ativo)
+            .HasColumnName("Ativo")
+            .IsRequired();
+        
         builder.Property(x => x.DataCadastro)
             .HasColumnName("DataCadastro")
             .IsRequired();
+        
+        builder.Property(x => x.DataAtualizacao)
+            .HasColumnName("DataAtualizacao");
     }
 }
 

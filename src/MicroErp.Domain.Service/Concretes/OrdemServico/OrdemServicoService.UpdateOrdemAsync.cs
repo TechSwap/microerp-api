@@ -19,6 +19,8 @@ public partial class OrdemServicoService
             var ordem = await _repositoryOrdemServico.GetByOneAsync(o => o.Id != request.IdOrdemServico, cancellationToken,
                 o => o.DetalhesOrdemServico);
 
+            var detalhes = ordem.DetalhesOrdemServico;
+
             ordem.Solicitante = request.Solicitante;
             ordem.NotaEntrada = request.NotaEntrada;
             ordem.NotaSaida = request.NotaSaida;
@@ -43,11 +45,8 @@ public partial class OrdemServicoService
             await _repositoryOrdemServico.SaveChangeAsync(cancellationToken);
            
             foreach (var itm in request.Detalhes)
-            {
-                
-                var detalhe = await _repositoryDetalhesOrdemServico.GetByOneAsync(d 
-                    => d.Id == itm.IdDetalhesOrdemServico 
-                    && d.OrdemServicoId == ordem.Id, cancellationToken);
+            {                
+                var detalhe = detalhes.Where(d => d.Id == itm.IdDetalhesOrdemServico).FirstOrDefault();                               
 
                 if (detalhe == null)
                 {
@@ -63,8 +62,7 @@ public partial class OrdemServicoService
                     };
             
                     await _repositoryDetalhesOrdemServico.InsertAsync(detail, cancellationToken);
-                    await _repositoryDetalhesOrdemServico.SaveChangeAsync(cancellationToken);
-                    
+                    await _repositoryDetalhesOrdemServico.SaveChangeAsync(cancellationToken);                   
                 }
                 else
                 {
