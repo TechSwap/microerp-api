@@ -70,7 +70,7 @@ public class ClienteController : ApiControllerBase
         return CreateResult(response);
     }
     
-    [HttpPost("active-cliente")]
+    [HttpPost("active")]
     [ProducesResponseType(typeof(ResponseDto<None>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
