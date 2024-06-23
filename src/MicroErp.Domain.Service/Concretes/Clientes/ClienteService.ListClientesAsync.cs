@@ -62,7 +62,7 @@ public partial class ClienteService
         
         logger.LogInformation("Metodo finalizado:{0}", nameof(ListClientesAsync));
 
-        if (!items.Any())
+        if (items.Count > 0)
         {
             return ResponseDto<IEnumerable<ListClientesResponseDto>>.Sucess(items.ToList(), metaData);
         }

@@ -2,6 +2,7 @@ using System.Net;
 using MicroErp.Domain.Service.Abstract.Dtos.Bases;
 using MicroErp.Domain.Service.Abstract.Dtos.Bases.Responses;
 using MicroErp.Domain.Service.Abstract.Dtos.Empresas.Fornecedores.UpdateFornecedor;
+using MicroErp.Domain.Utils;
 using MicroErp.Infra.CrossCuting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -19,18 +20,22 @@ public partial class FornecedorService
             var fornecedor = await _repositoryFornecedor.Query.Where(c => c.Id == request.IdFornecedor).FirstOrDefaultAsync();
 
             fornecedor.Nome = request.Nome;
-            fornecedor.Cnpj = request.Cnpj;
+            fornecedor.Cnpj = Formatting.RemoverCaracteresEspeciaisCNPJ(request.Cnpj);
+            fornecedor.Fantasia = request.Fantasia;
             fornecedor.InscricaoEstadual = request.InscricaoEstadual;
             fornecedor.Contato1 = request.Contato1;
             fornecedor.Contato2 = request.Contato2;
+            fornecedor.Responsavel = request.Responsavel;
             fornecedor.Email = request.Email;
 
             await _repositoryFornecedor.UpdateAsync(fornecedor, cancellationToken,
                 c => c.Nome,
+                c => c.Fantasia,
                 c => c.Cnpj,
                 c => c.InscricaoEstadual,
                 c => c.Contato1,
                 c => c.Contato2,
+                c => c.Responsavel,
                 c => c.Email);
 
             await _repositoryFornecedor.SaveChangeAsync(cancellationToken);

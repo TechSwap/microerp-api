@@ -12,7 +12,7 @@ public partial class FornecedorService
     public async Task<ResponseDto<None>> DeleteFornecedorAsync(FindOneRequestDto request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Metodo iniciado:{0}", nameof(DeleteFornecedorAsync));
-        var fornecedor = await _repositoryFornecedor.GetByOneAsync(q => q.Id == request.IdCliente, cancellationToken);
+        var fornecedor = await _repositoryFornecedor.GetByOneAsync(q => q.Id == request.IdFornecedor, cancellationToken);
 
         if (fornecedor == null)
             return ResponseDto<None>.Fail(HttpStatusCode.NotFound);
@@ -30,6 +30,5 @@ public partial class FornecedorService
         
         logger.LogInformation("Metodo finalizado:{0}", nameof(DeleteFornecedorAsync));
         return ResponseDto<None>.Sucess("Empresa deletada com sucesso", HttpStatusCode.NoContent);
-        
     }
 }

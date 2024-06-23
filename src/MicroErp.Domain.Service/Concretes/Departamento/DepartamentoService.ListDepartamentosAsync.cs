@@ -40,7 +40,18 @@ public partial class DepartamentoService
                 });
             }
 
-            metaData.TotalRecords = await _repository.Query.Where(c => c.Id != null).CountAsync();
+            metaData.TotalRecords = items.Count;
+
+            if (!string.IsNullOrEmpty(request.IdDepartamento))
+            {
+                items = items.Where(d => d.IdDepartamento == request.IdDepartamento).ToList();
+                metaData.TotalRecords = items.Count;
+            }
+            if (!string.IsNullOrEmpty(request.Responsavel))
+            {
+                items = items.Where(d => d.Responsavel.Contains(request.IdDepartamento)).ToList();
+                metaData.TotalRecords = items.Count;
+            }
 
             logger.LogInformation("Metodo finalizado:{0}", nameof(ListDepartamentosAsync));
 

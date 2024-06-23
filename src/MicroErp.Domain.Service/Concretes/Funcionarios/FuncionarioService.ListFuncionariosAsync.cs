@@ -45,21 +45,24 @@ public partial class FuncionarioService
                 Ativo = func.Ativo
             });
         }
+        
+        metaData.TotalRecords = await _repository.Query.Where(c => c.Id != null).CountAsync();  
 
         if (!string.IsNullOrEmpty(request.DepartamentoId))
         {
             itens = itens.Where(f => f.DepartamentoId == request.DepartamentoId).ToList();
+            metaData.TotalRecords = itens.Count;  
         }
         if (!string.IsNullOrEmpty(request.Nome))
         {
             itens = itens.Where(f => f.Nome.Contains(request.Nome)).ToList();
+            metaData.TotalRecords = itens.Count;  
         }
         if (!string.IsNullOrEmpty(request.Funcao))
         {
             itens = itens.Where(f => f.Funcao.Contains(request.Funcao)).ToList();
+            metaData.TotalRecords = itens.Count;  
         }
-        
-        metaData.TotalRecords = itens.Count;   
         
         logger.LogInformation("Metodo finalizado:{0}", nameof(GetCodigoFuncionarioAsync));
         if (itens.Count <= 0)

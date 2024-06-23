@@ -18,6 +18,9 @@ public class FornecedorConfiguration: IEntityTypeConfiguration<Fornecedor>
         builder.Property(x => x.Nome)
             .HasColumnName("Nome")
             .IsRequired();
+            
+        builder.Property(x => x.Fantasia)
+            .HasColumnName("Fantasia");
 
         builder.Property(x => x.Cnpj)
             .HasColumnName("Cnpj")
@@ -34,6 +37,9 @@ public class FornecedorConfiguration: IEntityTypeConfiguration<Fornecedor>
 
         builder.Property(x => x.Email)
             .HasColumnName("Email");
+        
+        builder.Property(x => x.Responsavel)
+            .HasColumnName("Responsavel");
 
         builder.Property(x => x.DataCadastro)
             .HasColumnName("DataCadastro")

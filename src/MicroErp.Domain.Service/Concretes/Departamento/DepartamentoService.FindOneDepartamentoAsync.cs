@@ -15,7 +15,6 @@ public partial class DepartamentoService
         logger.LogInformation("Metodo iniciado:{0}", nameof(FindOneDepartamentoAsync));
         try
         {
-            
             var entity = await _repository.GetByOneAsync(q => q.Id == request.IdDepartamento, cancellationToken);
 
             if (entity == null)
@@ -48,4 +47,5 @@ public partial class DepartamentoService
         {
             logger.LogInformation("Metodo finalizado:{0}", nameof(FindOneDepartamentoAsync));
         }
-    } }
+    } 
+}

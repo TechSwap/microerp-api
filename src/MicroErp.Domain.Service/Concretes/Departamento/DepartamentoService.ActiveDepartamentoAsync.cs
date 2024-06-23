@@ -28,7 +28,7 @@ public partial class DepartamentoService
         
             await _repository.SaveChangeAsync(cancellationToken);
             
-            return ResponseDto<None>.Sucess("Empresa atualizado com sucesso", HttpStatusCode.NoContent);
+            return ResponseDto<None>.Sucess("Departamento atualizado com sucesso", HttpStatusCode.NoContent);
         }
         catch (Exception e)
         {

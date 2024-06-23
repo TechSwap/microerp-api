@@ -31,35 +31,35 @@ public partial class FornecedorService
             {
                 IdFornecedor = itm.Id,
                 Nome = itm.Nome,
+                Fantasia  = itm.Fantasia,
+                Responsavel = itm.Responsavel,
                 CNPJ = Formatting.FormatCNPJ(itm.Cnpj),
                 Contato1= itm.Contato1,
                 Email = itm.Email,
                 Ativo= itm.Ativo   
             });
         }
+        metaData.TotalRecords = await _repositoryFornecedor.Query.Where(c => c.Id != null).CountAsync();  
 
         if (!string.IsNullOrEmpty(request.Nome))
         {
             items = items.Where(c => c.Nome == request.Nome).ToList();
+            metaData.TotalRecords = items.Count;   
         }
         if (!string.IsNullOrEmpty(request.Cnpj))
         {                                         
-            items = items.Where(c => c.CNPJ == request.Cnpj).ToList();                              
+            items = items.Where(c => c.CNPJ == request.Cnpj).ToList();   
+            metaData.TotalRecords = items.Count;   
         }      
         if (!string.IsNullOrEmpty(request.Email))
         {
             items = items.Where(c => c.Email == request.Email).ToList();
+            metaData.TotalRecords = items.Count;   
         }
-        //if (requestDto.Ativo)
-        //{                                              
-        //    items = items.Where(c => c.Ativo == requestDto.Ativo).ToList();                                   
-        //}           
-        
-        metaData.TotalRecords = items.Count;   
         
         logger.LogInformation("Metodo finalizado:{0}", nameof(ListFornecedoresAsync));
 
-        if (!items.Any())
+        if (items.Count > 0)
         {
             return ResponseDto<IEnumerable<ListFornecedoresResponseDto>>.Sucess(items.ToList(), metaData);
         }

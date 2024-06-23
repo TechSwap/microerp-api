@@ -8,9 +8,7 @@ namespace MicroErp.Application.FornecedorCases.ListFornecedores;
 public class ListFornecedoresHandler: IRequestHandler<ListFornecedoresRequest, ResponseDto<IEnumerable<ListFornecedoresResponseDto>>>
 {
     private readonly IFornecedorService _fornecedorService;
-
     public ListFornecedoresHandler(IFornecedorService fornecedorService) => _fornecedorService = fornecedorService;
-    
     public async Task<ResponseDto<IEnumerable<ListFornecedoresResponseDto>>> Handle(ListFornecedoresRequest request, CancellationToken cancellationToken)
     {
         return await _fornecedorService.ListFornecedoresAsync(request, cancellationToken);

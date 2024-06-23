@@ -3,6 +3,7 @@ using MicroErp.Api.Controllers.Bases;
 using MicroErp.Application.ClienteCases.DeleteCliente;
 using MicroErp.Application.FornecedorCases.ActiveFornecedor;
 using MicroErp.Application.FornecedorCases.AddFornecedor;
+using MicroErp.Application.FornecedorCases.DeleteFornecedor;
 using MicroErp.Application.FornecedorCases.FindOneFornecedor;
 using MicroErp.Application.FornecedorCases.ListFornecedores;
 using MicroErp.Application.FornecedorCases.UpdateFornecedor;
@@ -13,11 +14,9 @@ using MicroErp.Infra.CrossCuting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicroErp.Api.Controllers.v1;
-
 public class FornecedorController : ApiControllerBase
 {
     private readonly IMediator _mediator;
-
     public FornecedorController(IMediator mediator) => _mediator = mediator;
    
     [HttpPost()]
@@ -64,13 +63,13 @@ public class FornecedorController : ApiControllerBase
     [ProducesResponseType(typeof(ResponseDto<None>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeleteFornecedor([FromQuery] DeleteClienteRequest request)
+    public async Task<IActionResult> DeleteFornecedor([FromQuery] DeleteFornecedorRequest request)
     {
         var response = await _mediator.Send(request);
         return CreateResult(response);
     }
     
-    [HttpPost("active-fornecedor")]
+    [HttpPost("active")]
     [ProducesResponseType(typeof(ResponseDto<None>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -79,5 +78,4 @@ public class FornecedorController : ApiControllerBase
         var response = await _mediator.Send(request);
         return CreateResult(response);
     }
-
 }

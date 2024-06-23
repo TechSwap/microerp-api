@@ -26,11 +26,7 @@ public partial class OrdemServicoService
                 cancellationToken,
                 o => o.DetalhesOrdemServico);
             
-            var metaData = new MetaDataResponse
-            {
-                PageNumber = request.MetaData.PageNumber,
-                PageSize = request.MetaData.PageSize,
-            };
+            var metaData = _mapper.Map<MetaDataResponse>(result.MetaData);
 
             var ordens = new List<ListOrdensResponseDto>();
 
@@ -55,24 +51,26 @@ public partial class OrdemServicoService
                 
                 ordens.Add(ordem);
             }
+            
+            metaData.TotalRecords = await _repositoryOrdemServico.Query.Where(c => c.Id != null).CountAsync();
 
             if (!string.IsNullOrEmpty(request.IdCliente))
             {
                 ordens = ordens.Where(o => o.IdCliente == request.IdCliente).ToList();
+                metaData.TotalRecords = ordens.Count;
             }
 
             if (!string.IsNullOrEmpty(request.DataLancamento.ToString()))
             {
                 ordens = ordens.Where(o => o.DataLancamento.Date == request.DataLancamento).ToList();
+                metaData.TotalRecords = ordens.Count;
             }
             
             if (!string.IsNullOrEmpty(request.Solicitante))
             {
                 ordens = ordens.Where(o => o.Solicitante.Contains(request.Solicitante)).ToList();
+                metaData.TotalRecords = ordens.Count;
             }
-            
-            metaData.TotalPages = (ordens.Count / request.MetaData.PageSize);
-            metaData.TotalRecords = ordens.Count;
 
             if (ordens.Count != 0)
             {

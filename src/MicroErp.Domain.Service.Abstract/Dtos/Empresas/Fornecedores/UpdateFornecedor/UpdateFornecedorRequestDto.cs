@@ -4,10 +4,12 @@ public class UpdateFornecedorRequestDto
 {
     public string IdFornecedor { get; set; }
     public string Nome { get; set; }
+    public string? Fantasia { get; set; }
     public string Cnpj { get; set; }
     public string? InscricaoEstadual { get; set; }
     public string? Contato1 { get; set; }
     public string? Contato2 { get; set; }
+    public string? Responsavel { get; set; }
     public string? Email { get; set; }
     public bool? IsCliente { get; set; }
     public bool? IsFornecedor { get; set; }

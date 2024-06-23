@@ -4,6 +4,7 @@ using MicroErp.Application.DepartamentoCases.ActiveDepartamento;
 using MicroErp.Application.DepartamentoCases.AddDepartamento;
 using MicroErp.Application.DepartamentoCases.FindOneDepartamento;
 using MicroErp.Application.DepartamentoCases.ListDepartamentos;
+using MicroErp.Application.DepartamentoCases.UpdateDepartamento;
 using MicroErp.Domain.Service.Abstract.Dtos.Bases.Responses;
 using MicroErp.Domain.Service.Abstract.Dtos.Departamentos.FindOneDepartamento;
 using MicroErp.Domain.Service.Abstract.Dtos.Departamentos.ListDepartamentos;
@@ -37,6 +38,16 @@ public class DepartamentoController: ApiControllerBase
         return CreateResult(response);
     }
     
+    [HttpPut()]
+    [ProducesResponseType(typeof(ResponseDto<None>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateDepartamento([FromBody] UpdateDepartamentoRequest request)
+    {
+        var response = await _mediator.Send(request);
+        return CreateResult(response);
+    }
+    
     [HttpGet("lista-departamentos")]
     [ProducesResponseType(typeof(ResponseDto<IEnumerable<ListDepartamentosResponseDto>>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -47,7 +58,7 @@ public class DepartamentoController: ApiControllerBase
         return CreateResult(response);
     }
     
-    [HttpPost("active-departamento")]
+    [HttpPost("active")]
     [ProducesResponseType(typeof(ResponseDto<None>), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

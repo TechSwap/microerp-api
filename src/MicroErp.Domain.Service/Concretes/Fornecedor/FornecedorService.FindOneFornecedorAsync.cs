@@ -1,6 +1,7 @@
 using System.Net;
 using MicroErp.Domain.Service.Abstract.Dtos.Bases.Responses;
 using MicroErp.Domain.Service.Abstract.Dtos.Empresas.Clientes.FindOne;
+using MicroErp.Domain.Utils;
 using MicroErp.Infra.CrossCuting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -23,12 +24,13 @@ public partial class FornecedorService
         {
             IdFornecedor  = fornecedor.Id,
             Nome  = fornecedor.Nome,
-            Cnpj  = fornecedor.Cnpj,
+            Cnpj  = Formatting.FormatCNPJ(fornecedor.Cnpj),
             InscricaoEstadual  = fornecedor.InscricaoEstadual,
-            Fantasia = null,
+            Fantasia = fornecedor.Fantasia,
             Contato1  = fornecedor.Contato1,
             Contato2  = fornecedor.Contato2,
             Email  = fornecedor.Email,
+            Responsavel = fornecedor.Responsavel,
             Ativo  = fornecedor.Ativo,
             EnderecoId  = endereco != null ? endereco.Id : string.Empty,
             Cep  = endereco != null ? endereco.Cep : string.Empty,
