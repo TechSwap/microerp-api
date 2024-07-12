@@ -12,12 +12,13 @@ public class User : IdentityUser
         DataCadastro = DateTime.Now;
     }
 
-	public User(string nome,string email,bool ativo)
+	public User(string nome,string email, string idDepartamento, bool ativo)
 	{
 		Id = Guid.NewGuid().ToString();
 		Nome = nome;
 		Email = email;
 		UserName = email;
+		IdDepartamento = idDepartamento;
 		AtivoUsuario = ativo;
 		DataCadastro = DateTime.Now;
 	}
@@ -26,6 +27,7 @@ public class User : IdentityUser
 	public string? Nome { get; set; }
 	public bool? AtivoUsuario { get; set; }
 	public string? PhoneNumber { get; set; }
+	public string? IdDepartamento { get; set; }
 	public DateTime? DataCadastro { get; set; }
     public DateTime? DataAtualizacao { get; set; }
     public DateTime? DataInativacao { get; set; }

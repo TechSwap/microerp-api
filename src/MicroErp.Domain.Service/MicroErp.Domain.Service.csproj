@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>    
+    <ProjectReference Include="..\MicroErp.Application\MicroErp.Application.csproj" />    
     <ProjectReference Include="..\MicroErp.Domain.Repository.Orm.Abstract\MicroErp.Domain.Repository.Orm.Abstract.csproj" />
     <ProjectReference Include="..\MicroErp.Domain.Service.Abstract\MicroErp.Domain.Service.Abstract.csproj" />
     <ProjectReference Include="..\MicroErp.Domain.Utils\MicroErp.Domain.Utils.csproj" />

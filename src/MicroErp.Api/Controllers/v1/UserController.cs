@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MicroErp.Api.Controllers.Bases;
+using MicroErp.Application.UserCases.User.ActiveUser;
 using MicroErp.Application.UserCases.User.ConfirmEmail;
 using MicroErp.Application.UserCases.User.CreateNewUser;
 using MicroErp.Application.UserCases.User.FindOneUser;
@@ -10,6 +11,7 @@ using MicroErp.Domain.Service.Abstract.Dtos.Bases.Responses;
 using MicroErp.Domain.Service.Abstract.Dtos.User.AddNewUser;
 using MicroErp.Domain.Service.Abstract.Dtos.User.FindOneUser;
 using MicroErp.Infra.CrossCuting;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicroErp.Api.Controllers.v1;
@@ -18,11 +20,7 @@ namespace MicroErp.Api.Controllers.v1;
 public class UserController : ApiControllerBase
 {
 	private readonly IMediator _mediator;
-
-	public UserController(IMediator mediator)
-	{
-		_mediator = mediator;
-	}
+	public UserController(IMediator mediator) => _mediator = mediator;
 
 	[HttpGet]
 	[ProducesResponseType(typeof(ResponseDto<FindOneUserResponseDto>), StatusCodes.Status200OK)]
@@ -80,6 +78,26 @@ public class UserController : ApiControllerBase
 	[ProducesResponseType(StatusCodes.Status400BadRequest)]
 	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	public async Task<IActionResult> PostResetPassword([FromBody] ResetPasswordRequest request)
+	{
+		var response = await _mediator.Send(request);
+		return CreateResult(response);
+	}
+	
+	[HttpPost("active")]
+	[ProducesResponseType(typeof(ResponseDto<None>), StatusCodes.Status200OK)]
+	[ProducesResponseType(StatusCodes.Status400BadRequest)]
+	[ProducesResponseType(StatusCodes.Status404NotFound)]
+	public async Task<IActionResult> ActiveUser([FromQuery] ActiveUserRequest request)
+	{
+		var response = await _mediator.Send(request);
+		return CreateResult(response);
+	}
+	
+	[HttpDelete()]
+	[ProducesResponseType(typeof(ResponseDto<None>), StatusCodes.Status200OK)]
+	[ProducesResponseType(StatusCodes.Status400BadRequest)]
+	[ProducesResponseType(StatusCodes.Status404NotFound)]
+	public async Task<IActionResult> DeleteUser([FromQuery] ActiveUserRequest request)
 	{
 		var response = await _mediator.Send(request);
 		return CreateResult(response);

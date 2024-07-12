@@ -5,6 +5,7 @@ namespace MicroErp.Domain.Entity.OrdemCompras;
 public class OrdemCompra: BaseEntity
 {
     public string IdFornecedor { get; set; }
+    public string IdDepartamento { get; set; }
     public string Solicitante { get; set; }
     public DateTime DataPedido { get; set; }
     public long NumeroPedido { get; set; }

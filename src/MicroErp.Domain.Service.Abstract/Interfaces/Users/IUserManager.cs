@@ -11,7 +11,8 @@ public interface IUserManager
     Task<IdentityResult> AddToRoles(User user, IEnumerable<string> roles);
     Task<User> GetById(Guid idUser);
     Task<User> GetByEmail(string email);
-    Task<IdentityResult> Update(User user);
+    Task<IdentityResult> UpdateAsync(User user);
+    Task<IdentityResult> DeleteAsync (User user);
     Task<IdentityResult> RemoveRoles(User user, IEnumerable<string> roles);
     Task<IList<string>> GetRoles(User user);
     Task<IEnumerable<User>> GetAll();

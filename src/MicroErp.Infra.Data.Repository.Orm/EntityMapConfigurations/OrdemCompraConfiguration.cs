@@ -19,6 +19,9 @@ public class OrdemCompraConfiguration: IEntityTypeConfiguration<OrdemCompra>
             .HasColumnName("IdFornecedor")
             .IsRequired();
         
+        builder.Property(x => x.IdDepartamento)
+            .HasColumnName("IdDepartamento");
+        
         builder.Property(x => x.Solicitante)
             .HasColumnName("Solicitante")
             .IsRequired();
