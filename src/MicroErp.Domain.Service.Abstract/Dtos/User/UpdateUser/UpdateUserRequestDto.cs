@@ -4,9 +4,10 @@ namespace MicroErp.Domain.Service.Abstract.Dtos.User.UpdateUser;
 
 public class UpdateUserRequestDto : RequestDto
 {
-	public string Email { get; set; }
+	public string UserId { get; set; }
 	public string Nome { get; set; }
-	public string Celular { get; set; }
-	public bool AtivoUsuario { get; set; }
-	public bool Adm { get; set; }
+	public string Email { get; set; }
+	public string IdDepartamento { get; set; }
+	public bool Ativo { get; set; }
+	public string? Role { get; set; }
 }

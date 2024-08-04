@@ -46,7 +46,6 @@ public static class CriptografiaHelper
 				cipherText = Encoding.Unicode.GetString(ms.ToArray());
 			}
 		}
-
 		return cipherText;
 	}
 }

@@ -16,6 +16,7 @@ public partial class UserService : BaseService, IUserService
     private readonly IConfiguration _config;
     private readonly IMapper _mapper;
     private readonly IBaseRepository<UserEntity> _repository;
+    private readonly IBaseRepository<Entity.Departamentos.Departamento> _repositoryDepartamento;
     private readonly UserManager<User> _userManager;        
     private readonly IEmailService _emailService;
     private readonly IAuthenticatedUserService _user;
@@ -25,10 +26,12 @@ public partial class UserService : BaseService, IUserService
         UserManager<User> userManager,        
         IConfiguration config,
         IAuthenticatedUserService user,
+        IBaseRepository<Entity.Departamentos.Departamento> repositoryDepartamento,
         IEmailService emailService) : base(logger)
     {
         _mapper = mapper;
         _repository = repository;
+        _repositoryDepartamento = repositoryDepartamento;
         _userManager = userManager;
         _config = config;
         _emailService = emailService;

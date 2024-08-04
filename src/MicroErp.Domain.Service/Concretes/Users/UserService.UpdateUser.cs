@@ -13,10 +13,9 @@ public partial class UserService
     public async Task<ResponseDto<None>> UpdateUserAsync(UpdateUserRequestDto request, CancellationToken cancellationToken)
     {
         logger.LogInformation("Metodo iniciado:{0}", nameof(UpdateUserAsync));
-
         try
         {
-            User user = await _userManager.FindByEmailAsync(request.Email);
+            User user = await _userManager.FindByIdAsync(request.UserId);
 
             if (user == null)
             {
@@ -25,9 +24,9 @@ public partial class UserService
 
             user.Nome = request.Nome;
 			user.Email = request.Email;
-			user.PhoneNumber = request.Celular;
-			user.DataInativacao = request.AtivoUsuario?null:DateTime.Now;
-			user.AtivoUsuario = request.AtivoUsuario;
+            user.IdDepartamento = request.IdDepartamento;
+            user.AtivoUsuario = request.Ativo;
+            user.DataAtualizacao = DateTime.Now;
 
             var result = await _userManager.UpdateAsync(user);
 

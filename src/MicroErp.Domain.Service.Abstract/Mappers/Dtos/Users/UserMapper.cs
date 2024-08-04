@@ -24,9 +24,6 @@ public class UserMapper : BaseAutoMapper
 			.ReverseMap();
 
 		CreateMap<User, FindOneUserResponseDto>()
-			.ForMember(x => x.Celular, opt => opt.MapFrom(x => x.PhoneNumber))
-			.ForMember(x => x.IdUsuario, opt => opt.MapFrom(x => x.Id))
 			.ReverseMap();
-
 	}
 }

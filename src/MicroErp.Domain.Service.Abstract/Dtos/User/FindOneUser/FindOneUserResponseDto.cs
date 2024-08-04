@@ -2,9 +2,12 @@
 
 public class FindOneUserResponseDto
 {  
-    public string IdUsuario { get; set; }
+    public string UserId { get; set; }
 	public string Email { get; set; }
 	public string Nome { get; set; }
-	public string Celular { get; set; }
-	public bool? AtivoUsuario { get; set; }	
+	public string IdDepartamento { get; set; }
+	public string Departamento { get; set; }
+	public bool? Ativo { get; set; }
+	public string? Role { get; set; }
 }
+

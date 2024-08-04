@@ -11,12 +11,25 @@ public partial class UserService
     {
         logger.LogInformation("Metodo iniciado:{0}", nameof(FindOneUserAsync));
 
-        var result = await _userManager.FindByIdAsync(requestDto.Id);
+        var user = await _userManager.FindByIdAsync(requestDto.Id);
 
-        if (result == null)
+        if (user == null)
+        {
             return ResponseDto<FindOneUserResponseDto>.Fail(HttpStatusCode.NotFound);
+        }
 
-        var data = _mapper.Map<FindOneUserResponseDto>(result);
+        var departamento = await _repositoryDepartamento.GetByIdAsync(user.IdDepartamento, cancellationToken);
+        
+        var data = new FindOneUserResponseDto
+        {
+            UserId = user.Id,
+            Email = user.Email,
+            Nome  = user.Nome,
+            IdDepartamento = user.IdDepartamento,
+            Departamento = departamento?.Descricao,
+            Ativo = user.AtivoUsuario
+        };
+        
         logger.LogInformation("Metodo finalizado:{0}", nameof(FindOneUserAsync));
         return ResponseDto<FindOneUserResponseDto>.Sucess(data);
     }

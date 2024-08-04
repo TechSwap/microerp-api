@@ -47,6 +47,15 @@ public partial class UsuarioService
                 });
             }
 
+            if (!string.IsNullOrEmpty(request.Nome))
+            {
+                itens = itens.Where(u => u.Nome == request.Nome || u.Nome.Contains(request.Nome)).ToList();
+            }
+            if (!string.IsNullOrEmpty(request.Email))
+            {
+                itens = itens.Where(u => u.Email == request.Email).ToList();
+            }
+
             metaData.TotalPages = (itens.Count / request.MetaData.PageSize);
             metaData.TotalRecords = itens.Count;
 
