@@ -14,6 +14,7 @@ public class Endereco : BaseEntity
     public string? ClienteId { get; set; }
     public string? FornecedorId { get; set; }
     public string? UserId { get; set; }
+    public string? EmpresaId { get; set; }
     public DateTime DataCadastro { get; set; }
     public DateTime? DataAtualizacao { get; set; }
 }

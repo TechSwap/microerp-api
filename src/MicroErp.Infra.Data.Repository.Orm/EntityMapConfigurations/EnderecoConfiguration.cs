@@ -44,7 +44,10 @@ public class EnderecoConfiguration : IEntityTypeConfiguration<Endereco>
 
         builder.Property(x => x.UserId)
            .HasColumnName("UserId");
-
+        
+         builder.Property(x => x.EmpresaId)
+               .HasColumnName("EmpresaId");        
+        
         builder.Property(x => x.DataCadastro)
            .HasColumnName("DataCadastro")
            .IsRequired();

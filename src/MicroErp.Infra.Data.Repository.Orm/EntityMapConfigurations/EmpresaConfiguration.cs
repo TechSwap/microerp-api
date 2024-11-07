@@ -8,39 +8,32 @@ public class EmpresaConfiguration : IEntityTypeConfiguration<Empresa>
 {
     public void Configure(EntityTypeBuilder<Empresa> builder)
     {
-        builder.ToTable("Empresas");
+        builder.ToTable("Empresa");
         builder.HasKey(x => x.Id);
-
         builder.Property(x => x.Id)
-            .HasColumnName("EmpresaId")
-            .IsRequired();
-
-        builder.Property(x => x.Nome)
-            .HasColumnName("Nome")
-            .IsRequired();
-
+            .HasColumnName("EmpresaId");  
+        builder.Property(x => x.NomeFantasia)
+            .HasColumnName("NomeFantasia");     
+        builder.Property(x => x.RazaoSocial)
+            .HasColumnName("RazaoSocial");
         builder.Property(x => x.Cnpj)
-            .HasColumnName("Cnpj")
-            .IsRequired();
-
+            .HasColumnName("Cnpj");           
         builder.Property(x => x.InscricaoEstadual)
             .HasColumnName("InscricaoEstadual");
-
         builder.Property(x => x.Contato1)
-            .HasColumnName("Contato1");
-
-        builder.Property(x => x.Contato2)
-            .HasColumnName("Contato2");
-
+            .HasColumnName("Contato1"); 
         builder.Property(x => x.Email)
             .HasColumnName("Email");
-
+         builder.Property(x => x.Responsavel)
+            .HasColumnName("Responsavel");
+          builder.Property(x => x.DataFundacao)
+             .HasColumnName("DataFundacao");
+          builder.Property(x => x.TipoEmpresa)
+             .HasColumnName("TipoEmpresa");
+          builder.Property(x => x.Logo)
+             .HasColumnName("Logo");
         builder.Property(x => x.DataCadastro)
             .HasColumnName("DataCadastro")
-            .IsRequired();
-
-        builder.Property(x => x.Ativo)
-            .HasColumnName("Ativo")
-            .IsRequired();
+            .IsRequired();        
     }
 }

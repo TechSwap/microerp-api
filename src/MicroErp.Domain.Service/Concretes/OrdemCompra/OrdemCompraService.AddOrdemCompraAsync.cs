@@ -36,9 +36,13 @@ public partial class OrdemCompraService
                 {
                     Id = Guid.NewGuid().ToString().ToLower(),
                     IdOrdemCompra = OC.Id,
-                   
+                    Item = itm.Item,
+                    Descricao = itm.Descricao,
+                    Quantidade = itm.Quantidade,
+                    PrecoUnitario = itm.ValorUnitario,
+                    ValorTotal = itm.ValorTotal,
+                    DataCadastro = DateTime.Now.AddHours(-3)
                 };
-            
                 await _repositoryDetalhesOrdemCompra.InsertAsync(detalhe, cancellationToken);
                 await _repositoryDetalhesOrdemCompra.SaveChangeAsync(cancellationToken);
             }

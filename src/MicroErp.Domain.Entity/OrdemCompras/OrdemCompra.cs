@@ -1,10 +1,13 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using MicroErp.Domain.Entity.Bases;
 
 namespace MicroErp.Domain.Entity.OrdemCompras;
 
 public class OrdemCompra: BaseEntity
 {
+    [ForeignKey("Fornecedor")]
     public string IdFornecedor { get; set; }
+    [ForeignKey("Departamento")]
     public string IdDepartamento { get; set; }
     public string Solicitante { get; set; }
     public DateTime DataPedido { get; set; }

@@ -19,7 +19,6 @@ public static class Startup
 {
     public static IServiceCollection AddRepositories(this IServiceCollection services, IConfiguration configuration)
     {
-
         services.AddDbContext<IDbContext, DbContext>(
             opt =>
                 opt.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
@@ -37,14 +36,12 @@ public static class Startup
         {
             options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
             options.Lockout.MaxFailedAccessAttempts = 50;
-
             options.Password.RequireDigit = false;
             options.Password.RequiredLength = 6;
             options.Password.RequiredUniqueChars = 1;
             options.Password.RequireLowercase = false;
             options.Password.RequireNonAlphanumeric = false;
             options.Password.RequireUppercase = false;
-
         }).AddEntityFrameworkStores<DbContextUser>()
           .AddDefaultTokenProviders();
 
@@ -64,9 +61,7 @@ public static class Startup
         services.AddAuthorization();
         services.AddMemoryCache();
         services.AddJwksManager().PersistKeysInMemory().UseJwtValidation();
-
         services.AddEndpointsApiExplorer();
-
         services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
         return services;
     }

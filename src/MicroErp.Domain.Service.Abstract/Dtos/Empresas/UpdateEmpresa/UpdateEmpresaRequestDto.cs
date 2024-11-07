@@ -5,6 +5,7 @@ namespace MicroErp.Domain.Service.Abstract.Dtos.Empresas.UpdateEmpresa;
 public class UpdateEmpresaRequestDto: RequestDto
 {
     public string IdCliente { get; set; }
+    public string? EmpresaId { get; set; }
     public string Nome { get; set; }
     public string Cnpj { get; set; }
     public string? Responsavel { get; set; }
@@ -12,6 +13,9 @@ public class UpdateEmpresaRequestDto: RequestDto
     public string? InscricaoEstadual { get; set; }
     public string? Contato1 { get; set; }
     public string? Contato2 { get; set; }
+    public string? Logo { get; set; }
+    public DateTime? DataFundacao { get; set; }
+    public string? TipoEmpresa { get; set; }
     public string? Email { get; set; }
     public bool? IsCliente { get; set; }
     public bool? IsFornecedor { get; set; }
