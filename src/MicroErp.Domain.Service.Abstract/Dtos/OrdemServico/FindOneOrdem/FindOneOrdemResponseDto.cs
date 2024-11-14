@@ -13,9 +13,9 @@ public class FindOneOrdemResponseDto
     public string? Orcamento { get; set; }
     public decimal ValorTotal { get; set; }
     public int Prazo { get; set; }
-    public DateTime DataPrevisaoEntrega { get; set; }
-    public DateTime Lancamento { get; set; }
-    public string DataEntrega { get; set; }
+    public DateTime? DataPrevisaoEntrega { get; set; }
+    public DateTime? Lancamento { get; set; }
+    public DateTime? DataEntrega { get; set; }
     public List<DetalheOrdemServico> DetalheOrdemServicos { get; set; }
 }
 

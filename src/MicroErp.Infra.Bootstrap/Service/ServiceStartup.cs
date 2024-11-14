@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Diagnostics.CodeAnalysis;
 using MicroErp.Domain.Service.Abstract.Interfaces.Departamento;
 using MicroErp.Domain.Service.Abstract.Interfaces.Funcionario;
+using MicroErp.Domain.Service.Abstract.Interfaces.Maquina;
 using MicroErp.Domain.Service.Abstract.Interfaces.Orcamento;
 using MicroErp.Domain.Service.Abstract.Interfaces.OrdemCompra;
 using MicroErp.Domain.Service.Abstract.Interfaces.OrdemServico;
@@ -21,6 +22,7 @@ using MicroErp.Domain.Service.Abstract.Interfaces.Produto;
 using MicroErp.Domain.Service.Abstract.Interfaces.Usuarios;
 using MicroErp.Domain.Service.Concretes.Departamento;
 using MicroErp.Domain.Service.Concretes.Funcionarios;
+using MicroErp.Domain.Service.Concretes.Maquina;
 using MicroErp.Domain.Service.Concretes.Orcamento;
 using MicroErp.Domain.Service.Concretes.OrdemCompra;
 using MicroErp.Domain.Service.Concretes.OrdemServico;
@@ -63,6 +65,8 @@ public static class ServiceStartup
         services.AddScoped<IUsuarioService, UsuarioService>();
         // Orcamentos
         services.AddScoped<IOrcamentoService, OrcamentoService>();
+        // Maquinas
+        services.AddScoped<IMaquinaService, MaquinaService>();
         
         return services;
     }

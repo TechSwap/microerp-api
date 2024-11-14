@@ -21,10 +21,10 @@ public class OrdemServico: BaseEntity
     public string? Orcamento { get; set; }
     public decimal? ValorTotal { get; set; }
     public int? Prazo { get; set; }
-    public DateTime DataCadastro { get; set; }
+    public DateTime? DataCadastro { get; set; }
     public DateTime? DataPrevisaoEntrega { get; set; }
     public DateTime? DataEntrega { get; set; }
-
+    public DateTime? DataAtualizacao { get; set; }
     public virtual Cliente Cliente { get; set; }
     public virtual ICollection<DetalhesOrdemServico> DetalhesOrdemServico { get; set; }
 }

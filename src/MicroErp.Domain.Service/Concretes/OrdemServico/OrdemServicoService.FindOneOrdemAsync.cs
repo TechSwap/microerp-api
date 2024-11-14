@@ -48,7 +48,7 @@ public partial class OrdemServicoService
             order.Prazo = (int)ordem.Prazo;
             order.Lancamento = ordem.DataCadastro;
             order.DataPrevisaoEntrega = (DateTime)ordem.DataPrevisaoEntrega;
-            order.DataEntrega = string.IsNullOrEmpty(ordem.DataEntrega.ToString()) ? string.Empty : ordem.DataEntrega.ToString();
+            order.DataEntrega = ordem.DataEntrega == null ? DateTime.MinValue : (DateTime)ordem.DataEntrega;
             
             var details = new List<DetalheOrdemServico>();
 

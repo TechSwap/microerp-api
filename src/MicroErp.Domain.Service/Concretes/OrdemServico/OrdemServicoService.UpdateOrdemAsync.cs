@@ -16,7 +16,7 @@ public partial class OrdemServicoService
         logger.LogInformation("Metodo iniciado:{0}", nameof(UpdateOrdemAsync));
         try
         {
-            var ordem = await _repositoryOrdemServico.GetByOneAsync(o => o.Id != request.IdOrdemServico, cancellationToken,
+            var ordem = await _repositoryOrdemServico.GetByOneAsync(o => o.Id == request.IdOrdemServico, cancellationToken,
                 o => o.DetalhesOrdemServico);
 
             var detalhes = ordem.DetalhesOrdemServico;
@@ -30,6 +30,7 @@ public partial class OrdemServicoService
             ordem.Prazo = request.Prazo;
             ordem.DataEntrega = request.DataEntrega;
             ordem.DataPrevisaoEntrega = request.DataPrevisaoEntrega;
+            ordem.DataAtualizacao = DateTime.Now.AddHours(-3);
           
             await _repositoryOrdemServico.UpdateAsync(ordem, cancellationToken,
                 o => o.Solicitante,
@@ -40,13 +41,15 @@ public partial class OrdemServicoService
                 o => o.ValorTotal,
                 o => o.Prazo,
                 o => o.DataEntrega,
-                o => o.DataPrevisaoEntrega
+                o => o.DataPrevisaoEntrega,
+                o => o.DataAtualizacao
                 );
             await _repositoryOrdemServico.SaveChangeAsync(cancellationToken);
            
             foreach (var itm in request.Detalhes)
             {                
-                var detalhe = detalhes.Where(d => d.Id == itm.IdDetalhesOrdemServico).FirstOrDefault();                               
+                var detalhe = detalhes.Where(d => d.Id == itm.IdDetalhesOrdemServico 
+                                                  && d.OrdemServicoId == ordem.Id).FirstOrDefault();                               
 
                 if (detalhe == null)
                 {
@@ -66,13 +69,23 @@ public partial class OrdemServicoService
                 }
                 else
                 {
-                    detalhe.Descricao = itm.Descricao;
-                    detalhe.ValorUnitario = itm.ValorUnitario;
-                    detalhe.Quantidade = itm.Quantidade;
-                    detalhe.Unidade = itm.Unidade;
+                    if (detalhe.Descricao != itm.Descricao
+                        || detalhe.Quantidade != itm.Quantidade
+                        || detalhe.ValorUnitario != itm.ValorUnitario
+                        || detalhe.Unidade != itm.Unidade)
+                    {
+                        detalhe.Descricao = itm.Descricao;
+                        detalhe.ValorUnitario = itm.ValorUnitario;
+                        detalhe.Quantidade = itm.Quantidade;
+                        detalhe.Unidade = itm.Unidade;
 
-                    await _repositoryDetalhesOrdemServico.UpdateAsync(detalhe, cancellationToken);
-                    await _repositoryDetalhesOrdemServico.SaveChangeAsync(cancellationToken);
+                        await _repositoryDetalhesOrdemServico.UpdateAsync(detalhe, cancellationToken,
+                            d => d.Descricao,
+                            d => d.ValorUnitario,
+                            d => d.Quantidade,
+                            d => d.Unidade);    
+                        await _repositoryDetalhesOrdemServico.SaveChangeAsync(cancellationToken);
+                    }
                 }
             }
             

@@ -30,7 +30,7 @@ public partial class OrdemServicoService
 
             var ordens = new List<ListOrdensResponseDto>();
 
-            foreach (var itm in result.Items)
+            foreach (var itm in result.Items.OrderByDescending(i => i.NumeroOS))
             {
                 var itemsOrdem = itm.DetalhesOrdemServico.Count;
                 var cliente = await _repositoryCliente.GetByOneAsync(c => c.Id == itm.IdCliente, cancellationToken);
@@ -45,7 +45,7 @@ public partial class OrdemServicoService
                     NotaSaida = itm.NotaSaida,
                     ValorTotal = (decimal)itm.ValorTotal,
                     Itens = itemsOrdem,
-                    DataLancamento = itm.DataCadastro,
+                    DataLancamento = (DateTime)itm.DataCadastro,
                     DataPrevisaoEntrega = (DateTime)itm.DataPrevisaoEntrega
                 };
                 
@@ -74,7 +74,7 @@ public partial class OrdemServicoService
 
             if (ordens.Count != 0)
             {
-                return ResponseDto<IEnumerable<ListOrdensResponseDto>>.Sucess(ordens.OrderByDescending(o => o.NumeroOS).ToList(), metaData);
+                return ResponseDto<IEnumerable<ListOrdensResponseDto>>.Sucess(ordens.ToList(), metaData);
             }
             else
             {
