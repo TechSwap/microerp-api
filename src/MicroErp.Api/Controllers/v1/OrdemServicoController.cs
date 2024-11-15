@@ -4,11 +4,13 @@ using MicroErp.Application.OrdemServicoCases.AddOrdem;
 using MicroErp.Application.OrdemServicoCases.FindOneOrdem;
 using MicroErp.Application.OrdemServicoCases.GetNumeroOS;
 using MicroErp.Application.OrdemServicoCases.ListOrdens;
+using MicroErp.Application.OrdemServicoCases.Relatorio;
 using MicroErp.Application.OrdemServicoCases.UpdateOrdem;
 using MicroErp.Domain.Service.Abstract.Dtos.Bases.Responses;
 using MicroErp.Domain.Service.Abstract.Dtos.OrdemServico.FindOneOrdem;
 using MicroErp.Domain.Service.Abstract.Dtos.OrdemServico.GetNumeroOS;
 using MicroErp.Domain.Service.Abstract.Dtos.OrdemServico.ListOrdens;
+using MicroErp.Domain.Service.Abstract.Dtos.OrdemServico.Relatorio;
 using MicroErp.Infra.CrossCuting;
 using Microsoft.AspNetCore.Mvc;
 
@@ -70,4 +72,13 @@ public class OrdemServicoController : ApiControllerBase
         return CreateResult(response);
     }
     
+    [HttpGet("relatorio")]
+    [ProducesResponseType(typeof(ResponseDto<RelatorioExcelResponseDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetAllOs([FromQuery] RelatorioExcelRequest request)
+    {
+        var response = await _mediator.Send(request);
+        return CreateResult(response);
+    }
 }
