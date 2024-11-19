@@ -1,11 +1,13 @@
-namespace MicroErp.Domain.Service.Abstract.Dtos.Maquinas.AddMaquina;
+namespace MicroErp.Domain.Service.Abstract.Dtos.Maquinas.UpdateMaquina;
 
-public class AddMaquinaRequestDto
+public class UpdateMaquinaRequestDto
 {
+    public string IdMaquina { get; set; }
     public string NumeroSerie { get; set; }
     public string Fabricante { get; set; }
     public string Nome { get; set; }
     public int Status { get; set; }
     public string? AtivoFixo { get; set; }
     public string? IdDepartamento { get; set; }
+    public bool? Vendida { get; set; }
 }

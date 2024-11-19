@@ -20,17 +20,14 @@ public partial class OrdemServicoService
         try
         {
             var entity = _mapper.Map<PaginatedMetaDataEntity>(request);
-            var result = await _repositoryOrdemServico.GetPaginatedAsync(
-                request.ColunmSort,
-                entity,
-                cancellationToken,
+            var result = await _repositoryOrdemServico.GetByAsync(cancellationToken,
                 o => o.DetalhesOrdemServico);
             
-            var metaData = _mapper.Map<MetaDataResponse>(result.MetaData);
+            var metaData = new MetaDataResponse();
 
             var ordens = new List<ListOrdensResponseDto>();
 
-            foreach (var itm in result.Items.OrderByDescending(i => i.NumeroOS))
+            foreach (var itm in result.OrderByDescending(i => i.NumeroOS))
             {
                 var itemsOrdem = itm.DetalhesOrdemServico.Count;
                 var cliente = await _repositoryCliente.GetByOneAsync(c => c.Id == itm.IdCliente, cancellationToken);
@@ -51,8 +48,12 @@ public partial class OrdemServicoService
                 
                 ordens.Add(ordem);
             }
-            
-            metaData.TotalRecords = await _repositoryOrdemServico.Query.Where(c => c.Id != null).CountAsync();
+
+            metaData.PageSize = request.MetaData.PageSize;
+            metaData.PageNumber = request.MetaData.PageNumber;
+            metaData.TotalRecords = ordens.Count;
+            metaData.TotalPages = (ordens.Count / request.MetaData.PageSize);
+           
 
             if (!string.IsNullOrEmpty(request.IdCliente))
             {
@@ -74,7 +75,7 @@ public partial class OrdemServicoService
 
             if (ordens.Count != 0)
             {
-                return ResponseDto<IEnumerable<ListOrdensResponseDto>>.Sucess(ordens.ToList(), metaData);
+                return ResponseDto<IEnumerable<ListOrdensResponseDto>>.Sucess(ordens.Skip((request.MetaData.PageNumber - 1) * request.MetaData.PageSize).Take(request.MetaData.PageSize).ToList(), metaData);
             }
             else
             {

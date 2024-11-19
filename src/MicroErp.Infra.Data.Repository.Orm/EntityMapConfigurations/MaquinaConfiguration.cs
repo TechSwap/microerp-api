@@ -29,6 +29,9 @@ public class MaquinaConfiguration: IEntityTypeConfiguration<Maquina>
         builder.Property(x => x.Status)
             .HasColumnName("Status")
             .IsRequired();
+        
+        builder.Property(x => x.Vendida)
+            .HasColumnName("Vendida");
 
         builder.Property(x => x.AtivoFixo)
             .HasColumnName("AtivoFixo");

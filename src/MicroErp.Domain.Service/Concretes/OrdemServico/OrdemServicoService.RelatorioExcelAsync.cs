@@ -70,7 +70,7 @@ public partial class OrdemServicoService
                     workSheet.Cells[indice, 11].Value = string.IsNullOrEmpty(itn.Prazo.ToString()) ? string.Empty : itn.Prazo;
                     workSheet.Cells[indice, 12].Value = string.IsNullOrEmpty(itn.DataPrevisaoEntrega.ToString()) ? string.Empty : itn.DataPrevisaoEntrega.Value.ToShortDateString();
                     workSheet.Cells[indice, 13].Value = itn.NumeroOS;
-                    workSheet.Cells[indice, 14].Value = string.IsNullOrEmpty(itn.DataEntrega.ToString()) ? string.Empty : itn.DataEntrega.Value.ToLongDateString();
+                    workSheet.Cells[indice, 14].Value = string.IsNullOrEmpty(itn.DataEntrega.ToString()) ? string.Empty : itn.DataEntrega.Value.ToShortDateString();
                     indice++;
                 }
                 else

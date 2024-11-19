@@ -9,6 +9,7 @@ public class Maquina:BaseEntity
     public string? Descricao { get; set; }
     public string? IdDepartamento { get; set; }
     public int Status { get; set; }
+    public bool? Vendida { get; set; }
     public string? AtivoFixo { get; set; }
     public DateTime DataCadastro { get; set; }
     public DateTime? DataAtualizacao { get; set; }

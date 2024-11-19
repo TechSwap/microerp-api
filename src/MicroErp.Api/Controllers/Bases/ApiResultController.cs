@@ -51,6 +51,9 @@ public class ApiResultController : ControllerBase
 
         if (code is HttpStatusCode.OK && dto?.StatusCode is HttpStatusCode.OK && data is { })
             return Ok(dto);
+        
+        if (code is HttpStatusCode.Created && dto?.StatusCode is HttpStatusCode.Created && data is { })
+            return Created(string.Empty, dto);
 
         return NotFound(null);
     }
