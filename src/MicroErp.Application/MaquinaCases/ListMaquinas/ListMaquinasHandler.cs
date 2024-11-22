@@ -8,7 +8,6 @@ namespace MicroErp.Application.MaquinaCases.ListMaquinas;
 public class ListMaquinasHandler: IRequestHandler<ListMaquinasRequest, ResponseDto<IEnumerable<ListMaquinasResponseDto>>>
 {
     private readonly IMaquinaService _maquinaService;
-
     public ListMaquinasHandler(IMaquinaService maquinaService) => _maquinaService = maquinaService;
     public Task<ResponseDto<IEnumerable<ListMaquinasResponseDto>>> Handle(ListMaquinasRequest request, CancellationToken cancellationToken)
     {
