@@ -17,6 +17,7 @@ using MicroErp.Domain.Service.Abstract.Interfaces.Funcionario;
 using MicroErp.Domain.Service.Abstract.Interfaces.Maquina;
 using MicroErp.Domain.Service.Abstract.Interfaces.Orcamento;
 using MicroErp.Domain.Service.Abstract.Interfaces.OrdemCompra;
+using MicroErp.Domain.Service.Abstract.Interfaces.OrdemProducao;
 using MicroErp.Domain.Service.Abstract.Interfaces.OrdemServico;
 using MicroErp.Domain.Service.Abstract.Interfaces.Produto;
 using MicroErp.Domain.Service.Abstract.Interfaces.Usuarios;
@@ -25,6 +26,7 @@ using MicroErp.Domain.Service.Concretes.Funcionarios;
 using MicroErp.Domain.Service.Concretes.Maquina;
 using MicroErp.Domain.Service.Concretes.Orcamento;
 using MicroErp.Domain.Service.Concretes.OrdemCompra;
+using MicroErp.Domain.Service.Concretes.OrdemProducao;
 using MicroErp.Domain.Service.Concretes.OrdemServico;
 using MicroErp.Domain.Service.Concretes.Produtos;
 using MicroErp.Domain.Service.Concretes.Usuario;
@@ -67,6 +69,9 @@ public static class ServiceStartup
         services.AddScoped<IOrcamentoService, OrcamentoService>();
         // Maquinas
         services.AddScoped<IMaquinaService, MaquinaService>();
+        // Ordem Producao
+        services.AddScoped<IOrdemProducaoService, OrdemProducaoService>();
+        
         
         return services;
     }
