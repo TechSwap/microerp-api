@@ -1,4 +1,5 @@
 using System.Net;
+using MicroErp.Application.OrdemServicoCases.FindOneOrdem;
 using MicroErp.Domain.Entity.OrdemProducao;
 using MicroErp.Domain.Service.Abstract.Dtos.Bases;
 using MicroErp.Domain.Service.Abstract.Dtos.Bases.Responses;
@@ -15,14 +16,32 @@ public partial class OrdemProducaoService
         logger.LogInformation("Metodo iniciado:{0}", nameof(AddOrdemAsync));
         try
         {
+            var ordens = await _repositoryOrdemProducao.GetByAsync(o => o.Id != null, cancellationToken);
+
+            var lastOrder = ordens.OrderByDescending(o => o.NumeroOp).Select(o => o.NumeroOp).FirstOrDefault();
+            var prazo = DateTime.Now;
+
+            if (!string.IsNullOrEmpty(request.IdOrdemServico))
+            {
+                var Os =  await _ordemServicoService.FindOneOrdemAsync(new FindOneOrdemRequest { IdOrdemServico = request.IdOrdemServico }, cancellationToken);
+
+                prazo = (DateTime)Os.Data.DataEntrega;
+            }
+            else
+            {
+                prazo.AddDays(request.Prazo);
+            }
+            
             var novaOp = new Entity.OrdemProducao.OrdemProducao
             {
                 Id = Guid.NewGuid().ToString().ToLower(),
+                NumeroOp = lastOrder + 1,
                 IdCliente = request.IdCliente,
                 IdOrdemServico = request.IdOrdemServico,
                 Prazo = request.Prazo,
                 Status = 1,
-                DataCadastro = DateTime.Now
+                DataCadastro = DateTime.Now,
+                DataAtualizacao = DateTime.Now
             };
 
             await _repositoryOrdemProducao.InsertAsync(novaOp, cancellationToken);
@@ -37,13 +56,13 @@ public partial class OrdemProducaoService
                     Descricao = detalhe.Descricao,
                     Quantidade = detalhe.Quantidade,
                     Unidade = detalhe.Unidade,
-                    PrazoEntrega = (DateTime)detalhe.PrazoEntrega
+                    PrazoEntrega = prazo
                 };
 
                 await _repositoryDetalhesOrdemProducao.InsertAsync(det, cancellationToken);
                 await _repositoryDetalhesOrdemProducao.SaveChangeAsync(cancellationToken);
             }
-            return ResponseDto.Sucess("Ordem gerada com sucesso", HttpStatusCode.NoContent);
+            return ResponseDto.Sucess("Ordem gerada com sucesso", HttpStatusCode.Created);
         }
         catch (Exception e)
         {

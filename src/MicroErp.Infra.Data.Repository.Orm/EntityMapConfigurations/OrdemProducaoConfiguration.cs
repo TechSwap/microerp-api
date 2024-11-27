@@ -15,6 +15,7 @@ public class OrdemProducaoConfiguration: IEntityTypeConfiguration<OrdemProducao>
         builder.Property(x => x.Id)
             .HasColumnName("IdOrdemProducao")
             .IsRequired();
+        
         builder.Property(x => x.IdOrdemServico)
             .HasColumnName("IdOrdemServico");
         
