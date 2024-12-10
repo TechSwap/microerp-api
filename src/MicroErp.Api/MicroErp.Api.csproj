@@ -12,6 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.104.2" />
     <PackageReference Include="Hangfire.AspNetCore" Version="1.7.33" />
     <PackageReference Include="Hangfire.Core" Version="1.7.33" />
     <PackageReference Include="Hangfire.SqlServer" Version="1.7.33" />

@@ -56,5 +56,8 @@ public class OrdemServicoConfiguration: IEntityTypeConfiguration<OrdemServico>
         
         builder.Property(x => x.DataAtualizacao)
             .HasColumnName("DataAtualizacao");
+        
+        builder.Property(x => x.Status)
+            .HasColumnName("Status");
     }
 }

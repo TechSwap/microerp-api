@@ -7,6 +7,7 @@ using MicroErp.Infra.Bootstrap.Version;
 using MicroErp.Infra.CrossCuting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -39,6 +40,11 @@ public static class AddConfiguration
 					return new BadRequestObjectResult(ResponseDto<None>.Fail(state));
 				};
 			});
+		
+		services.Configure<FormOptions>(options =>
+		{
+			options.MultipartBodyLengthLimit = 10 * 1024 * 1024; // 10 MB
+		});
 
 		return services;
 	}

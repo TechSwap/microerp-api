@@ -1,12 +1,8 @@
 using System.Net;
-using MicroErp.Application.OrdemServicoCases.FindOneOrdem;
-using MicroErp.Domain.Entity.OrdemProducao;
 using MicroErp.Domain.Service.Abstract.Dtos.Bases;
 using MicroErp.Domain.Service.Abstract.Dtos.Bases.Responses;
-using MicroErp.Domain.Service.Abstract.Dtos.OrdemProducao.AddOrdem;
 using MicroErp.Domain.Service.Abstract.Dtos.OrdemProducao.ListOrdens;
 using MicroErp.Infra.CrossCuting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace MicroErp.Domain.Service.Concretes.OrdemProducao;
@@ -27,6 +23,19 @@ public partial class OrdemProducaoService
             {
                 var cliente = await _repositoryCliente.GetByIdAsync(ordem.IdCliente, cancellationToken);
                 var detalhes = await _repositoryDetalhesOrdemProducao.GetByAsync(d => d.IdOrdemProducao == ordem.Id, cancellationToken);
+
+                var itensDesc = new List<ItensDesc>();
+                foreach (var detalhe in detalhes)
+                {
+                    itensDesc.Add(new ItensDesc
+                    {
+                        Id = detalhe.Id,
+                        Descricao = detalhe.Descricao,
+                        Quantidade = detalhe.Quantidade,
+                        Status = detalhe.Status ?? 0
+                    });
+                }
+                
                 string numeroOs = string.Empty;
                 if (!string.IsNullOrEmpty(ordem.IdOrdemServico))
                 {
@@ -42,7 +51,8 @@ public partial class OrdemProducaoService
                     Cliente = cliente.Nome,
                     Itens = detalhes.Count(),
                     Status = ordem.Status,
-                    NumeroOs = numeroOs
+                    NumeroOs = numeroOs,
+                    ItensDesc = itensDesc,
                 });
             }
 

@@ -10,6 +10,12 @@ public class DetalhesOrdemProducao: BaseEntity
     public int Quantidade { get; set; }
     public string Descricao { get; set; }
     public string Unidade { get; set; }
-    public DateTime PrazoEntrega { get; set; }
+    public DateTime? PrazoEntrega { get; set; }
     public DateTime? DataEntrega { get; set; }
+    public DateTime? DataInicializacao { get; set; }
+    public DateTime? DataFinalizacao { get; set; }
+    public string? IdFuncionario { get; set; }
+    public string? IdMaquina { get; set; }
+    public int? HorasTrabalhadas { get; set; }
+    public int? Status { get; set; }
 }

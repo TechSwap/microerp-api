@@ -3,6 +3,7 @@ using MicroErp.Domain.Entity.Clientes;
 using MicroErp.Domain.Entity.OrdemProducao;
 using MicroErp.Domain.Repository.Orm.Abstract.Repositories;
 using MicroErp.Domain.Repository.Orm.Abstract.UnitOfWork;
+using MicroErp.Domain.Service.Abstract.Dtos.OrdemProducao.FindOne;
 using MicroErp.Domain.Service.Abstract.Interfaces.OrdemProducao;
 using MicroErp.Domain.Service.Abstract.Interfaces.OrdemServico;
 using MicroErp.Domain.Service.Concretes.Bases;
@@ -40,5 +41,11 @@ public partial  class OrdemProducaoService: BaseService, IOrdemProducaoService
         _config = config;
         _ordemServicoService = ordemServicoService;
         _repositoryOrdemServico = repositoryOrdemServico;
+    }
+    
+    private async Task<int> GetStatus(List<DetalhesFindOneProducaoRequestDto> detalhesRequestDtos, List<DetalhesOrdemProducao> detalhes)
+    {
+        int status = detalhesRequestDtos.All(d => detalhes.Any(o => o.Id == d.IdOrdemProducaoDetalhe)) ? 2 : 3;
+        return status;
     }
 }

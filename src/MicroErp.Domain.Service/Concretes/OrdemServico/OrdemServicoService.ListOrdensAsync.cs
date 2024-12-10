@@ -1,13 +1,9 @@
 using System.Net;
 using MicroErp.Domain.Entity.Bases;
-using MicroErp.Domain.Entity.OrdemServicos;
-using MicroErp.Domain.Entity.Produtos;
 using MicroErp.Domain.Service.Abstract.Dtos.Bases;
 using MicroErp.Domain.Service.Abstract.Dtos.Bases.Responses;
-using MicroErp.Domain.Service.Abstract.Dtos.OrdemServico.AddOrdem;
 using MicroErp.Domain.Service.Abstract.Dtos.OrdemServico.ListOrdens;
 using MicroErp.Infra.CrossCuting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace MicroErp.Domain.Service.Concretes.OrdemServico;
@@ -43,7 +39,8 @@ public partial class OrdemServicoService
                     ValorTotal = (decimal)itm.ValorTotal,
                     Itens = itemsOrdem,
                     DataLancamento = (DateTime)itm.DataCadastro,
-                    DataPrevisaoEntrega = (DateTime)itm.DataPrevisaoEntrega
+                    DataPrevisaoEntrega = (DateTime)itm.DataPrevisaoEntrega,
+                    Status = itm.Status
                 };
                 
                 ordens.Add(ordem);

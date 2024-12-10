@@ -9,4 +9,13 @@ public class ListOrdensProducaoResponseDto
     public string NumeroOs { get; set; }
     public int Status { get; set; }
     public int Itens { get; set; }
+    public List<ItensDesc> ItensDesc { get; set; }
+}
+
+public class ItensDesc
+{
+    public string Id { get; set; }
+    public string Descricao { get; set; }
+    public int Quantidade { get; set; }
+    public int Status { get; set; }
 }

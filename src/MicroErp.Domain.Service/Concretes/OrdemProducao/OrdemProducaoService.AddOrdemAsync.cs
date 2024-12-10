@@ -24,8 +24,8 @@ public partial class OrdemProducaoService
             if (!string.IsNullOrEmpty(request.IdOrdemServico))
             {
                 var Os =  await _ordemServicoService.FindOneOrdemAsync(new FindOneOrdemRequest { IdOrdemServico = request.IdOrdemServico }, cancellationToken);
-
-                prazo = (DateTime)Os.Data.DataEntrega;
+                
+                prazo = (DateTime)Os.Data.DataPrevisaoEntrega;
             }
             else
             {
@@ -62,6 +62,9 @@ public partial class OrdemProducaoService
                 await _repositoryDetalhesOrdemProducao.InsertAsync(det, cancellationToken);
                 await _repositoryDetalhesOrdemProducao.SaveChangeAsync(cancellationToken);
             }
+
+            await _ordemServicoService.UpdateStatusOrdemAsync(novaOp.Id, 1, cancellationToken);
+            
             return ResponseDto.Sucess("Ordem gerada com sucesso", HttpStatusCode.Created);
         }
         catch (Exception e)

@@ -35,5 +35,22 @@ public class DetalheOrdemProducaoConfiguration: IEntityTypeConfiguration<Detalhe
         
         builder.Property(x => x.DataEntrega)
             .HasColumnName("DataEntrega");
+        
+        builder.Property(x => x.DataInicializacao)
+            .HasColumnName("DataInicializacao");
+        
+        builder.Property(x => x.DataFinalizacao)
+            .HasColumnName("DataFinalizacao");
+        
+        builder.Property(x => x.IdFuncionario)
+            .HasColumnName("IdFuncionario");
+        
+        builder.Property(x => x.IdMaquina)
+            .HasColumnName("IdMaquina");
+        
+        builder.Property(x => x.HorasTrabalhadas)
+            .HasColumnName("HorasTrabalhadas");
+        builder.Property(x => x.Status)
+            .HasColumnName("Status");
     }
 }
