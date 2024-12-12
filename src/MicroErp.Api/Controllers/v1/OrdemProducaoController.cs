@@ -1,6 +1,7 @@
 using MediatR;
 using MicroErp.Api.Controllers.Bases;
 using MicroErp.Application.OrdemProducaoCases.AddOrdem;
+using MicroErp.Application.OrdemProducaoCases.CancellyOrdem;
 using MicroErp.Application.OrdemProducaoCases.FindOneOrdem;
 using MicroErp.Application.OrdemProducaoCases.ListOrdens;
 using MicroErp.Application.OrdemProducaoCases.PrintOrdem;
@@ -44,6 +45,16 @@ public class OrdemProducaoController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> StartOpAsync([FromBody] StartOrdemProducaoRequest request)
+    {
+        var response = await _mediator.Send(request);
+        return CreateResult(response);
+    }
+    
+    [HttpPost("cancelly-op")]
+    [ProducesResponseType(typeof(ResponseDto<None>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> CancellyOpAsync([FromBody] CancellyOrdemProducaoRequest request)
     {
         var response = await _mediator.Send(request);
         return CreateResult(response);

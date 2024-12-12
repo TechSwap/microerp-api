@@ -15,6 +15,7 @@ using System.Diagnostics.CodeAnalysis;
 using MicroErp.Domain.Service.Abstract.Interfaces.Departamento;
 using MicroErp.Domain.Service.Abstract.Interfaces.Funcionario;
 using MicroErp.Domain.Service.Abstract.Interfaces.Maquina;
+using MicroErp.Domain.Service.Abstract.Interfaces.Operacao;
 using MicroErp.Domain.Service.Abstract.Interfaces.Orcamento;
 using MicroErp.Domain.Service.Abstract.Interfaces.OrdemCompra;
 using MicroErp.Domain.Service.Abstract.Interfaces.OrdemProducao;
@@ -24,6 +25,7 @@ using MicroErp.Domain.Service.Abstract.Interfaces.Usuarios;
 using MicroErp.Domain.Service.Concretes.Departamento;
 using MicroErp.Domain.Service.Concretes.Funcionarios;
 using MicroErp.Domain.Service.Concretes.Maquina;
+using MicroErp.Domain.Service.Concretes.Operacao;
 using MicroErp.Domain.Service.Concretes.Orcamento;
 using MicroErp.Domain.Service.Concretes.OrdemCompra;
 using MicroErp.Domain.Service.Concretes.OrdemProducao;
@@ -71,6 +73,8 @@ public static class ServiceStartup
         services.AddScoped<IMaquinaService, MaquinaService>();
         // Ordem Producao
         services.AddScoped<IOrdemProducaoService, OrdemProducaoService>();
+        // Operacao
+        services.AddScoped<IOperacaoService, OperacaoService>();
         
         
         return services;

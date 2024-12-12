@@ -73,7 +73,7 @@ public partial class OrdemProducaoService
            
             if (list.Count() != 0)
             {
-                return ResponseDto<IEnumerable<ListOrdensProducaoResponseDto>>.Sucess(list
+                return ResponseDto<IEnumerable<ListOrdensProducaoResponseDto>>.Sucess(list.OrderByDescending(o => o.NumeroOs)
                     .Skip((request.MetaData.PageNumber - 1) * request.MetaData.PageSize)
                     .Take(request.MetaData.PageSize).ToList(), metaData);
             }

@@ -15,6 +15,4 @@ public class ActiveDepartamentoHandler: IRequestHandler<ActiveDepartamentoReques
     {
         return await _departamentoService.ActiveDepartamentoAsync(request, cancellationToken);
     }
-   
-
 }

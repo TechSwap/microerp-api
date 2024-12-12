@@ -2,6 +2,7 @@ using MediatR;
 using MicroErp.Api.Controllers.Bases;
 using MicroErp.Application.DepartamentoCases.ActiveDepartamento;
 using MicroErp.Application.DepartamentoCases.AddDepartamento;
+using MicroErp.Application.DepartamentoCases.DeleteDepartamento;
 using MicroErp.Application.DepartamentoCases.FindOneDepartamento;
 using MicroErp.Application.DepartamentoCases.ListDepartamentos;
 using MicroErp.Application.DepartamentoCases.UpdateDepartamento;
@@ -63,6 +64,16 @@ public class DepartamentoController: ApiControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> ActiveDepartamento([FromQuery] ActiveDepartamentoRequest request)
+    {
+        var response = await _mediator.Send(request);
+        return CreateResult(response);
+    } 
+    
+    [HttpDelete("delete")]
+    [ProducesResponseType(typeof(ResponseDto<None>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteDepartamento([FromQuery] DeleteDepartamentoRequest request)
     {
         var response = await _mediator.Send(request);
         return CreateResult(response);

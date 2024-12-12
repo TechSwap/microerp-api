@@ -13,4 +13,6 @@ public class OrdemProducao: BaseEntity
     public int Status { get; set; }
     public DateTime DataCadastro { get; set; }
     public DateTime? DataAtualizacao { get; set; }
+    public DateTime? DataCancelamento { get; set; }
+    public string? MotivoCancelamento { get; set; }
 }

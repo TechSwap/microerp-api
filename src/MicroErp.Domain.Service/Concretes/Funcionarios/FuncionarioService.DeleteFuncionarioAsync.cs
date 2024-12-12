@@ -16,10 +16,7 @@ public partial class FuncionarioService
         if (funcionario == null)
             return ResponseDto<None>.Fail(HttpStatusCode.NotFound);
 
-        funcionario.Ativo = false;
-
-        await _repository.UpdateAsync(funcionario, cancellationToken,
-            c => c.Ativo);
+        await _repository.DeleteAsync(funcionario, cancellationToken);
         
         await _repository.SaveChangeAsync(cancellationToken);
         

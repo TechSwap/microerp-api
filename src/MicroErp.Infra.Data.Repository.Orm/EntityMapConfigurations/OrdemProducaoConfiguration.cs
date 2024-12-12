@@ -40,5 +40,11 @@ public class OrdemProducaoConfiguration: IEntityTypeConfiguration<OrdemProducao>
 
         builder.Property(x => x.DataAtualizacao)
             .HasColumnName("DataAtualizacao");
+        
+        builder.Property(x => x.DataCancelamento)
+            .HasColumnName("DataCancelamento");
+        
+        builder.Property(x => x.MotivoCancelamento)
+            .HasColumnName("MotivoCancelamento");
     }
 }
