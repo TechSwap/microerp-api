@@ -56,6 +56,8 @@ public partial class OrdemServicoService
             
                 await _repositoryDetalhesOrdemServico.InsertAsync(detalhe, cancellationToken);
                 await _repositoryDetalhesOrdemServico.SaveChangeAsync(cancellationToken);
+
+                await UpdateStatusDetailOrdemAsync(detalhe.Id, 1, cancellationToken);
             }
             
             return ResponseDto.Sucess("Ordem gerada com sucesso", HttpStatusCode.NoContent);

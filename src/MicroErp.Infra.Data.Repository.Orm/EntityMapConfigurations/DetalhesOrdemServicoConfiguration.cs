@@ -34,5 +34,8 @@ public class DetalhesOrdemServicoConfiguration: IEntityTypeConfiguration<Detalhe
         
         builder.Property(x => x.PrazoEntrega)
             .HasColumnName("PrazoEntrega");
+        
+        builder.Property(x => x.Status)
+            .HasColumnName("Status");
     }
 }

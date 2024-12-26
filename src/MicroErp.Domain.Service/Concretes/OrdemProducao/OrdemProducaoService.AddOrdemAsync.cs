@@ -64,6 +64,8 @@ public partial class OrdemProducaoService
 
                 await _repositoryDetalhesOrdemProducao.InsertAsync(det, cancellationToken);
                 await _repositoryDetalhesOrdemProducao.SaveChangeAsync(cancellationToken);
+
+                await _ordemServicoService.UpdateStatusDetailOrdemAsync(det.Id, 1, cancellationToken);
             }
 
             await _ordemServicoService.UpdateStatusOrdemAsync(IdOrdemServico, 1, cancellationToken);

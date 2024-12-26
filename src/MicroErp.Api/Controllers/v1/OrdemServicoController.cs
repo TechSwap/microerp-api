@@ -1,6 +1,7 @@
 using MediatR;
 using MicroErp.Api.Controllers.Bases;
 using MicroErp.Application.OrdemServicoCases.AddOrdem;
+using MicroErp.Application.OrdemServicoCases.DeleteDetailOrdem;
 using MicroErp.Application.OrdemServicoCases.FindOneOrdem;
 using MicroErp.Application.OrdemServicoCases.GetNumeroOS;
 using MicroErp.Application.OrdemServicoCases.ListOrdens;
@@ -77,6 +78,17 @@ public class OrdemServicoController : ApiControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetAllOs([FromQuery] RelatorioExcelRequest request)
+    {
+        var response = await _mediator.Send(request);
+        return CreateResult(response);
+    }
+            
+    
+    [HttpDelete("delete-detail")]
+    [ProducesResponseType(typeof(ResponseDto<None>), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteDetailOsAsync([FromQuery] DeleteDetailOrdemRequest request)
     {
         var response = await _mediator.Send(request);
         return CreateResult(response);

@@ -13,5 +13,6 @@ public class DetalhesOrdemServico: BaseEntity
     public int Quantidade { get; set; }
     public string Unidade { get; set; }
     public DateTime? PrazoEntrega { get; set; }
+    public int? Status { get; set; }
     public virtual OrdemServico OrdemServico { get; set; }
 }

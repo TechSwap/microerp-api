@@ -37,7 +37,7 @@ public partial class OrdemProducaoService
                 detalhe.Status = status;
 
                 await _repositoryDetalhesOrdemProducao.UpdateAsync(detalhe, cancellationToken,
-                    d =>d.Status,
+                    d => d.Status,
                     d => d.DataInicializacao);
                 await _repositoryDetalhesOrdemProducao.SaveChangeAsync(cancellationToken);
             }
