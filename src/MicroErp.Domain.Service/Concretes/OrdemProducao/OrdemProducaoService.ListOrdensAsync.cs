@@ -35,12 +35,12 @@ public partial class OrdemProducaoService
                         Status = detalhe.Status ?? 0
                     });
                 }
-                
-                string numeroOs = string.Empty;
+
+                long numeroOs = 0;
                 if (!string.IsNullOrEmpty(ordem.IdOrdemServico))
                 {
                     var os = await _repositoryOrdemServico.GetByIdAsync(ordem.IdOrdemServico, cancellationToken);
-                    numeroOs = Convert.ToString(os.NumeroOS);
+                    numeroOs = os.NumeroOS;
                 }
                 
                 list.Add(new ListOrdensProducaoResponseDto

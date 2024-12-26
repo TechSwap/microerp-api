@@ -29,7 +29,6 @@ public partial class OrdemServicoService
         }
         catch (Exception e)
         {
-            _unitOfWork.Rollback(cancellationToken);
             var fail = ErrorResponse.CreateError(Constants.DefaultFail)
                 .WithDeveloperMessage(e.Message)
                 .WithStackTrace(e.StackTrace)
@@ -38,7 +37,6 @@ public partial class OrdemServicoService
         }
         finally
         {
-            _unitOfWork.CloseTransaction();
             logger.LogInformation("Metodo finalizado:{0}", nameof(UpdateStatusOrdemAsync));
         }
     }

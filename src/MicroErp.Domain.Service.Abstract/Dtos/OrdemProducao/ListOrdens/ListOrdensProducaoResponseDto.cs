@@ -6,7 +6,7 @@ public class ListOrdensProducaoResponseDto
     public string IdOrdemProducao { get; set; }
     public string IdCliente { get; set; }
     public string Cliente { get; set; }
-    public string NumeroOs { get; set; }
+    public long NumeroOs { get; set; }
     public int Status { get; set; }
     public int Itens { get; set; }
     public List<ItensDesc> ItensDesc { get; set; }

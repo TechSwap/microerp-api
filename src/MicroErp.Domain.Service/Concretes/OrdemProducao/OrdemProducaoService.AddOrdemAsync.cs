@@ -21,10 +21,13 @@ public partial class OrdemProducaoService
             var lastOrder = ordens.OrderByDescending(o => o.NumeroOp).Select(o => o.NumeroOp).FirstOrDefault();
             var prazo = DateTime.Now;
 
+            string IdOrdemServico = string.Empty;
+
             if (!string.IsNullOrEmpty(request.IdOrdemServico))
             {
                 var Os =  await _ordemServicoService.FindOneOrdemAsync(new FindOneOrdemRequest { IdOrdemServico = request.IdOrdemServico }, cancellationToken);
-                
+
+                IdOrdemServico = Os.Data.IdOrdemServico;
                 prazo = (DateTime)Os.Data.DataPrevisaoEntrega;
             }
             else
@@ -63,9 +66,9 @@ public partial class OrdemProducaoService
                 await _repositoryDetalhesOrdemProducao.SaveChangeAsync(cancellationToken);
             }
 
-            await _ordemServicoService.UpdateStatusOrdemAsync(novaOp.Id, 1, cancellationToken);
+            await _ordemServicoService.UpdateStatusOrdemAsync(IdOrdemServico, 1, cancellationToken);
             
-            return ResponseDto.Sucess("Ordem gerada com sucesso", HttpStatusCode.Created);
+            return ResponseDto.Sucess("Ordem gerada com sucesso", HttpStatusCode.NoContent);
         }
         catch (Exception e)
         {

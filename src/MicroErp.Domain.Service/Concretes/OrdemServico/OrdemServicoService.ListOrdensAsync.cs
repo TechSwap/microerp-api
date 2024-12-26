@@ -40,7 +40,7 @@ public partial class OrdemServicoService
                     Itens = itemsOrdem,
                     DataLancamento = (DateTime)itm.DataCadastro,
                     DataPrevisaoEntrega = (DateTime)itm.DataPrevisaoEntrega,
-                    Status = itm.Status
+                    Status = itm.Status == null ? 0 :itm.Status
                 };
                 
                 ordens.Add(ordem);
